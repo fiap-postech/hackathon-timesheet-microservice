@@ -1,0 +1,26 @@
+plugins {
+    id 'java-library'
+}
+
+version '1.0.0'
+
+dependencies {
+    compileOnly sharedLibs.spring.boot.starter.data.jpa
+    compileOnly sharedLibs.spring.boot.starter.validation
+
+    compileOnly sharedLibs.flyway.mysql
+
+    compileOnly project(":application")
+    compileOnly project(":adapter")
+
+    api sharedLibs.mysql.connector.j
+
+    testImplementation project(":application")
+    testImplementation project(":adapter")
+    testImplementation sharedLibs.instancio.core
+    testImplementation sharedLibs.instancio.junit
+    testImplementation sharedLibs.spring.boot.starter.data.jpa
+    testImplementation sharedLibs.spring.boot.starter.test
+    testImplementation sharedLibs.spring.boot.starter.validation
+    testImplementation sharedLibs.spring.boot.starter.web
+}

@@ -1,0 +1,25 @@
+db:
+  host: mysql
+  schema: tech_challenge
+  username: sys_tech_challenge
+  password: #defined at AWS Secrets Manager
+  port: 3306
+
+spring.data.redis:
+  host: redis
+  port: 6379
+
+aws:
+  resources:
+    sqs:
+      time-tracking-event.queue: prd-hackathon-time-sheet-time-tracking-event-queue
+      customer-removed-data.queue: prd-customer-remove-data-response-queue
+    sns:
+      customer-remove-data.topic: prd-customer-remove-data-topic
+    s3:
+      customer.data.removal: customer-data-removal
+
+customer.data.removal.aes:
+  algorithm: #defined at AWS Secrets Manager
+  password: #defined at AWS Secrets Manager
+  iv: #defined at AWS Secrets Manager
