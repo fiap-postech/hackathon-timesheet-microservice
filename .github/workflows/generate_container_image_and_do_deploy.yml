@@ -53,4 +53,4 @@ jobs:
 
       - name: ECS Deployment
         run: |
-          aws ecs update-service --cluster ${{ vars.ECS_CLUSTER }} --service ${{ vars.ECS_SERVICE }}  --force-new-deployment --region ${{ vars.AWS_REGION }}
+          aws ecs update-service --cluster ${{ vars.ECS_CLUSTER_HACKATHON }} --service ${{ vars.ECS_SERVICE }}  --force-new-deployment --region ${{ vars.AWS_REGION }}
