@@ -1,0 +1,21 @@
+plugins {
+    id 'java-library'
+}
+
+version '1.0.0'
+
+dependencies {
+    implementation "fr.opensagres.xdocreport:fr.opensagres.poi.xwpf.converter.pdf.openpdf:2.0.4"
+
+    compileOnly sharedLibs.spring.boot.starter.web
+    compileOnly sharedLibs.spring.data.commons
+    compileOnly sharedLibs.springdoc.openapi.starter.webmvc.ui
+
+    implementation project(":adapter")
+
+    testImplementation sharedLibs.instancio.core
+    testImplementation sharedLibs.instancio.junit
+    testImplementation sharedLibs.spring.boot.starter.test
+    testImplementation sharedLibs.spring.boot.starter.validation
+    testImplementation sharedLibs.spring.boot.starter.web
+}

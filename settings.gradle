@@ -35,14 +35,15 @@ findProject(':drivers:mysql')?.name = 'mysql'
 include 'drivers:rest'
 findProject(':drivers:rest')?.name = 'rest'
 
-include 'drivers:customer-remove-data-producer'
-findProject(':drivers:customer-remove-data-producer')?.name = 'customer-remove-data-producer'
-
-include 'drivers:timetracking-consumer'
-findProject(':drivers:timetracking-consumer')?.name = 'timetracking-consumer'
 
 include 'drivers:timesheet-request-consumer'
 findProject(':drivers:timesheet-request-consumer')?.name = 'timesheet-request-consumer'
 
+include 'drivers:timetracking-consumer'
+findProject(':drivers:timetracking-consumer')?.name = 'timetracking-consumer'
+
 include 'drivers:timesheet-report-s3'
 findProject(':drivers:timesheet-report-s3')?.name = 'timesheet-report-s3'
+
+include 'drivers:pdf-report-generator'
+findProject(':drivers:pdf-report-generator')?.name = 'pdf-report-generator'

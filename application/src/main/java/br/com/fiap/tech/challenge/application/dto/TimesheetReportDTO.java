@@ -1,15 +1,13 @@
 package br.com.fiap.tech.challenge.application.dto;
 
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.Duration;
 import java.util.List;
 
 @Getter
@@ -24,7 +22,12 @@ public class TimesheetReportDTO implements Serializable {
 
     private String yearMonth;
 
-    private LocalTime totalWorkHoursMonth;
+    private List<TimeTrackingReportDTO> timesheet;
 
-    private List<TimeTrackingReportDTO> timesheets;
+    public Duration getTotalWorkedHours() {
+        return timesheet.stream()
+                .map(TimeTrackingReportDTO::getTotalWorkedHours)
+                .reduce(Duration::plus)
+                .orElseThrow();
+    }
 }

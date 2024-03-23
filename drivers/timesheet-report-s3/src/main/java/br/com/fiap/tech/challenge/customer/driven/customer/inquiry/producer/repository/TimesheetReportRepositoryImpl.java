@@ -32,6 +32,9 @@ public class TimesheetReportRepositoryImpl implements TimesheetReportRepository 
             //TODO: Implementar geracao do pdf
 
             var key = dto.getEmployeeId() + "/" + dto.getYearMonth() + ".pdf";
+
+
+
             s3.store(
                     bucketName,
                     key,
@@ -46,8 +49,8 @@ public class TimesheetReportRepositoryImpl implements TimesheetReportRepository 
     @Override
     public boolean isReportExist(TimesheetRequestDTO dto) {
         var key = dto.getEmployeeId() + "/" + dto.getYearMonth() + ".pdf";
-        var listaObject = s3.listObjects(bucketName,key);
+        var listObject = s3.listObjects(bucketName,key);
 
-        return listaObject.size() > 0;
+        return !listObject.isEmpty();
     }
 }

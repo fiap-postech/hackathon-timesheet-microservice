@@ -1,16 +1,16 @@
 package br.com.fiap.tech.challenge.application.dto;
 
-import br.com.fiap.tech.challenge.enterprise.enums.DataRemovalStatus;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.Duration;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
+
+import static java.util.Objects.nonNull;
 
 @Getter
 @Builder
@@ -30,6 +30,16 @@ public class TimeTrackingReportDTO implements Serializable {
 
     private LocalTime endTimestamp;
 
-    private LocalTime totalWorkHours;
+    public boolean isConsistent(){
+        return nonNull(endTimestamp);
+    }
+
+    public Duration getTotalWorkedHours() {
+        if (!isConsistent()) {
+            return Duration.ZERO;
+        }
+
+        return Duration.between(startTimestamp, endTimestamp);
+    }
 
 }
