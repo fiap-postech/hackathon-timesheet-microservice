@@ -31,7 +31,7 @@ public class TimesheetReportRepositoryImpl implements TimesheetReportRepository 
         try {
             var output = repository.generate(dto);
 
-            var key = dto.getEmployeeId() + "/" + dto.getYearMonth() + ".pdf";
+            var key = this.getKey(dto.getEmployeeId(), dto.getYearMonth());
 
             s3.upload(bucketName, key, new ByteArrayInputStream(output));
 
@@ -43,9 +43,13 @@ public class TimesheetReportRepositoryImpl implements TimesheetReportRepository 
 
     @Override
     public boolean isReportExist(TimesheetRequestDTO dto) {
-        var key = dto.getEmployeeId() + "/" + dto.getYearMonth() + ".pdf";
+        var key = this.getKey(dto.getEmployeeId(), dto.getYearMonth());
         var listObject = s3.listObjects(bucketName,key);
 
         return !listObject.isEmpty();
+    }
+
+    private String getKey(String employeeId, String yearMonth) {
+        return employeeId + "/" + yearMonth + ".pdf";
     }
 }
