@@ -1,17 +1,25 @@
-# Hackathon Timesheet Microservice
+# Hackathon Time Sheet Microservice
 
 ## Problema
-Há uma lanchonete de bairro que está expandindo devido seu grande sucesso. Porém, com a expansão e sem um sistema de controle de pedidos, o atendimento aos clientes pode ser caótico e confuso. Por exemplo, imagine que um cliente faça um pedido complexo, como um hambúrguer personalizado com ingredientes específicos, acompanhado de batatas fritas e uma bebida. O atendente pode anotar o pedido em um papel e entregá-lo à cozinha, mas não há garantia de que o pedido será preparado corretamente. Sem um sistema de controle de pedidos, pode haver confusão entre os atendentes e a cozinha, resultando em atrasos na preparação e entrega dos pedidos. Os pedidos podem ser perdidos, mal interpretados ou esquecidos, levando à insatisfação dos clientes e a perda de negócios. Em resumo, um sistema de controle de pedidos é essencial para garantir que a lanchonete possa atender os clientes de maneira eficiente, gerenciando seus pedidos e estoques de forma adequada. Sem ele, expandir a lanchonete pode acabar não dando certo, resultando em clientes insatisfeitos e impactando os negócios de forma negativa. Para solucionar o problema, a lanchonete irá investir em um sistema de autoatendimento de fast food, que é composto por uma série de dispositivos e interfaces que permitem aos clientes selecionar e fazer pedidos sem precisar interagir com um atendente.
+A Hackaton Company SA, uma empresa de grande porte com mais de 100.000 colaboradores e que atende diversas áreas, inclusive tecnologia, está em um ponto de transição crucial. Atualmente, está utilizando um sistema de ponto eletrônico terceirizado, mas devido a questões de qualidade e custos mensais significativos por usuário, a diretoria decidiu por construir o próprio sistema de ponto eletrônico interno. E, para que atenda as diversas filiais e pontos de trabalho dos colaboradores, este novo sistema será baseado em nuvem.
+
+A decisão de migrar para um sistema interno e em nuvem é motivada por várias razões. A primeira é relacionada à qualidade do serviço fornecido pelo sistema terceirizado, que tem sido insatisfatória, com problemas frequentes de desempenho e disponibilidade. Somando-se a isso, os custos mensais por usuário estão se tornando proibitivos, especialmente considerando a quantidade de colaboradores. E outro ponto importante é a possibilidade de controlar a evolução do software implementando as melhorias necessárias sempre que desejado.
+
+Ao construir o próprio sistema em nuvem, espera-se não apenas economizar custos no longo prazo, mas também melhorar a qualidade e a confiabilidade do registro de ponto para os colaboradores. A nuvem oferece benefícios significativos em termos de escalabilidade, disponibilidade e segurança, tornando-a a escolha ideal para o novo sistema.
+
+Este projeto envolverá a criação de um sistema de ponto eletrônico robusto, escalável e seguro que possa suportar a carga de nossa grande força de trabalho. O novo sistema irá implementar as funcionalidades do sistema atual, e terá uma série de recursos adaptados à realidade da nossa empresa, incluindo a autenticação de usuário, registro de ponto, visualização e edição de registros, geração de relatórios, notificações e integração com outros sistemas.
+
+A transição para a nuvem é um passo importante para o início de grandes modernizações dentro da organização.
 
 ## Solução
 
-Foi elaborado um conjunto de serviços para viabilizar a operação da lanchonete.
+Foi elaborado um conjunto de serviços para viabilizar a operação de registro de ponto.
 
-![Visão Geral da Solução](documentation/microservices-c1.png)
+![Visão Geral da Solução](doc/c1_hackathon.png)
 
-Nesse repositório, temos a implementação do serviço de pedidos (Customer Microservice).
+Nesse repositório, temos a implementação do serviço de registro de ponto (Hackathon Time Sheet Microservice).  
 
-![Customer Microservice](documentation/customer-microservice-c2.png)
+![Time Sheet Microservice](doc/time-sheet-c2_hackathon.png)
 
 ## Repositórios de IaC
 
@@ -19,127 +27,249 @@ Nesse repositório, temos a implementação do serviço de pedidos (Customer Mic
 
 Nossa infraestrutura de Cloud está dividida da seguinte forma:
 
-1) [infra-foundation](https://github.com/fiap-postech/infra-foundation): Repositório com a infra-estrutura responsável por toda infra de fundação na qual inclui camada de rede (VPC), Security Groups, Subnets, Internet Gateway, API Gateway e etc.
-2) [infra-microservice-foundation](https://github.com/fiap-postech/infra-microservice-foundation): Repositório com a infra-estrutura base para micro serviços: AWS ECS Cluster, API Gateway, CDN.
+1) [hackathon-infra-foundation](https://github.com/fiap-postech/hackathon-infra-foundation): Repositório com a infra-estrutura responsável por toda a fundação, que inclui camada de rede (VPC), Security Groups, Subnets, Internet Gateway, API Gateway e etc.
+2) [hackathon-iac-microservice-foundation](hackathon-iac-microservice-foundation): Repositório com a infra-estrutura base para micro serviços: AWS ECS Cluster, API Gateway, VPC Link.
 
-### Repositórios Lambdas Autenticação JWT
+### Repositório Infra Time Sheet Microservice
 
-Os nossos repositórios para autenticação utilizando o conceito serverless são:
-
-1) [json-web-token-signer](https://github.com/fiap-postech/json-web-token-signer): Repositório que contem a lógica da lambda de geração do token de da autenticação.
-2) [json-web-token-verifier](https://github.com/fiap-postech/json-web-token-verifier): Repositório com a lambda que possui a chave privada para validar se o token passado no header de Authorization é um token válido.
-
-### Repositório Infra Customer Microservice
-
-1) [iac-customer-microservice](https://github.com/fiap-postech/iac-customer-microservice): Repositório que contem o código de aprovisionamento dos recursos para o workload do customer microservice.
+1) [hackathon-iac-timesheet-microservice](https://github.com/fiap-postech/hackathon-iac-timesheet-microservice): Repositório que contem o código de aprovisionamento dos recursos para o workload do Time Sheet microservice.
 
 ## Estrutura Geral do Projeto
 ```
-./customer-microservice
-├── Dockerfile
+./hackathon-timesheet-microservice
 ├── README.md
 ├── adapter
-│ ├── build.gradle
-│ └── src
-│     └── main
-│         └── java
-│             └── br
-│                 └── com
-│                     └── fiap
-│                         └── tech
-│                             └── challenge
-│                                 └── adapter
-│                                     ├── controller
-│                                     │ └── customer
-│                                     ├── dto
-│                                     ├── gateway
-│                                     │ └── customer
-│                                     ├── mapping
-│                                     ├── presenter
-│                                     └── repository
+│   └── src
+│       ├── main
+│       │   └── java
+│       │       └── br
+│       │           └── com
+│       │               └── fiap
+│       │                   └── tech
+│       │                       └── challenge
+│       │                           └── adapter
+│       │                               ├── controller
+│       │                               │   └── customer
+│       │                               ├── dto
+│       │                               ├── gateway
+│       │                               │   └── customer
+│       │                               ├── mapping
+│       │                               ├── presenter
+│       │                               └── repository
+│       └── test
+│           └── java
+│               └── br
+│                   └── com
+│                       └── fiap
+│                           └── tech
+│                               └── challenge
+│                                   └── adapter
+│                                       ├── controller
+│                                       ├── fixture
+│                                       ├── gateway
+│                                       └── presenter
 ├── application
-│ ├── build.gradle
-│ └── src
-│     └── main
-│         └── java
-│             └── br
-│                 └── com
-│                     └── fiap
-│                         └── tech
-│                             └── challenge
-│                                 └── application
-│                                     ├── dto
-│                                     ├── gateway
-│                                     └── usecase
-│                                         └── customer
-├── build.gradle
-├── documentation
+│   └── src
+│       ├── main
+│       │   └── java
+│       │       └── br
+│       │           └── com
+│       │               └── fiap
+│       │                   └── tech
+│       │                       └── challenge
+│       │                           └── application
+│       │                               ├── dto
+│       │                               ├── gateway
+│       │                               └── usecase
+│       │                                   └── customer
+│       └── test
+│           └── java
+│               └── br
+│                   └── com
+│                       └── fiap
+│                           └── tech
+│                               └── challenge
+│                                   └── application
+│                                       ├── fixture
+│                                       └── usecase
+│                                           └── customer
+├── doc
 ├── drivers
-│ ├── mysql
-│ │ ├── build.gradle
-│ │ └── src
-│ │     └── main
-│ │         └── java
-│ │             └── br
-│ │                 └── com
-│ │                     └── fiap
-│ │                         └── tech
-│ │                             └── challenge
-│ │                                 └── driven
-│ │                                     └── mysql
-│ │                                         ├── config
-│ │                                         ├── mapping
-│ │                                         ├── model
-│ │                                         ├── repository
-│ │                                         └── service
-│ └── rest
-│     ├── build.gradle
-│     └── src
-│         └── main
-│             └── java
-│                 └── br
-│                     └── com
-│                         └── fiap
-│                             └── tech
-│                                 └── challenge
-│                                     └── rest
-│                                         ├── config
-│                                         ├── mapping
-│                                         └── resource
-│                                             ├── doc
-│                                             ├── request
-│                                             └── response
+│   ├── customer-remove-data-producer
+│   │   └── src
+│   │       └── main
+│   │           └── java
+│   │               └── br
+│   │                   └── com
+│   │                       └── fiap
+│   │                           └── tech
+│   │                               └── challenge
+│   │                                   └── customer
+│   │                                       └── driven
+│   │                                           └── customer
+│   │                                               └── producer
+│   │                                                   ├── config
+│   │                                                   ├── dto
+│   │                                                   └── messaging
+│   ├── mysql
+│   │   └── src
+│   │       ├── main
+│   │       │   ├── java
+│   │       │   │   └── br
+│   │       │   │       └── com
+│   │       │   │           └── fiap
+│   │       │   │               └── tech
+│   │       │   │                   └── challenge
+│   │       │   │                       └── driven
+│   │       │   │                           └── mysql
+│   │       │   │                               ├── config
+│   │       │   │                               ├── mapping
+│   │       │   │                               ├── model
+│   │       │   │                               ├── repository
+│   │       │   │                               └── service
+│   │       │   └── resources
+│   │       │       └── db
+│   │       │           ├── migration
+│   │       │           └── test
+│   │       └── test
+│   │           └── java
+│   │               └── br
+│   │                   └── com
+│   │                       └── fiap
+│   │                           └── tech
+│   │                               └── challenge
+│   │                                   └── driven
+│   │                                       └── mysql
+│   │                                           └── fixture
+│   ├── rest
+│   │   └── src
+│   │       ├── main
+│   │       │   └── java
+│   │       │       └── br
+│   │       │           └── com
+│   │       │               └── fiap
+│   │       │                   └── tech
+│   │       │                       └── challenge
+│   │       │                           └── rest
+│   │       │                               ├── config
+│   │       │                               ├── mapping
+│   │       │                               └── resource
+│   │       │                                   ├── doc
+│   │       │                                   ├── request
+│   │       │                                   └── response
+│   │       └── test
+│   │           └── java
+│   │               └── br
+│   │                   └── com
+│   │                       └── fiap
+│   │                           └── tech
+│   │                               └── challenge
+│   │                                   ├── fixture
+│   │                                   ├── rest
+│   │                                   └── util
+│   ├── timesheet-report-s3
+│   │   └── src
+│   │       └── main
+│   │           └── java
+│   │               └── br
+│   │                   └── com
+│   │                       └── fiap
+│   │                           └── tech
+│   │                               └── challenge
+│   │                                   └── customer
+│   │                                       └── driven
+│   │                                           └── customer
+│   │                                               └── inquiry
+│   │                                                   └── producer
+│   │                                                       ├── config
+│   │                                                       ├── dto
+│   │                                                       └── repository
+│   ├── timesheet-request-consumer
+│   │   └── src
+│   │       └── main
+│   │           └── java
+│   │               └── br
+│   │                   └── com
+│   │                       └── fiap
+│   │                           └── tech
+│   │                               └── challenge
+│   │                                   └── customer
+│   │                                       └── driven
+│   │                                           └── customer
+│   │                                               └── data
+│   │                                                   └── removal
+│   │                                                       └── response
+│   │                                                           └── consumer
+│   │                                                               ├── config
+│   │                                                               ├── mapping
+│   │                                                               └── messaging
+│   └── timetracking-consumer
+│       └── src
+│           └── main
+│               └── java
+│                   └── br
+│                       └── com
+│                           └── fiap
+│                               └── tech
+│                                   └── challenge
+│                                       └── customer
+│                                           └── driven
+│                                               └── customer
+│                                                   └── data
+│                                                       └── removal
+│                                                           └── action
+│                                                               └── consumer
+│                                                                   ├── config
+│                                                                   └── messaging
 ├── enterprise
-│ ├── build.gradle
-│ └── src
-│     └── main
-│         └── java
-│             └── br
-│                 └── com
-│                     └── fiap
-│                         └── tech
-│                             └── challenge
-│                                 └── enterprise
-│                                     ├── entity
-│                                     ├── error
-│                                     └── valueobject
+│   └── src
+│       └── main
+│           └── java
+│               └── br
+│                   └── com
+│                       └── fiap
+│                           └── tech
+│                               └── challenge
+│                                   └── enterprise
+│                                       ├── entity
+│                                       ├── enums
+│                                       ├── error
+│                                       └── valueobject
+├── gradle
+│   └── wrapper
 ├── infra
-│ └── docker
-│     └── mysql
-│         └── script
+│   └── docker
+│       └── mysql
+│           └── script
 ├── launcher
-│ ├── build.gradle
-│ └── src
-│     └── main
-│         └── java
-│             └── br
-│                 └── com
-│                     └── fiap
-│                         └── tech
-│                             └── challenge
-│                                 └── launcher
-│                                     └── configuration
-└── settings.gradle
+│   └── src
+│       ├── main
+│       │   ├── java
+│       │   │   └── br
+│       │   │       └── com
+│       │   │           └── fiap
+│       │   │               └── tech
+│       │   │                   └── challenge
+│       │   │                       └── launcher
+│       │   │                           └── configuration
+│       │   └── resources
+│       └── test
+│           ├── java
+│           │   └── br
+│           │       └── com
+│           │           └── fiap
+│           │               └── tech
+│           │                   └── challenge
+│           │                       └── launcher
+│           │                           ├── config
+│           │                           ├── container
+│           │                           ├── fixture
+│           │                           ├── rest
+│           │                           └── util
+│           └── resources
+│               └── schemas
+└── tests
+    └── fixture
 ```
 
 ## Como executar o projeto?
@@ -156,11 +286,11 @@ Independente da forma que escolha para executar o projeto, temos o seguinte proc
 
 1. Clone o projeto desse repositório do Github
 ```sh
-git clone https://github.com/fiap-postech/customer-microservice.git
+git clone https://github.com/fiap-postech/hackathon-timesheet-microservice.git
 ```
 2. Acesse a pasta do projeto pelo terminal/cmd
 ```sh
-cd customer-microservice
+cd hackathon-timesheet-microservice
 ```
 3. Execute o comando de build do projeto
 ```sh
