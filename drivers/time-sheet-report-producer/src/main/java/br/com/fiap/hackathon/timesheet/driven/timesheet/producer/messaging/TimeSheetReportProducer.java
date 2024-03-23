@@ -3,7 +3,7 @@ package br.com.fiap.hackathon.timesheet.driven.timesheet.producer.messaging;
 import br.com.fiap.hackathon.adapter.repository.PublishTimeSheetReportRepository;
 import br.com.fiap.hackathon.timesheet.driven.timesheet.producer.config.EnvironmentProperties;
 import br.com.fiap.tech.challenge.enterprise.entity.TimesheetReportResponse;
-import io.awspring.cloud.sns.core.SnsTemplate;
+import io.awspring.cloud.sqs.operations.SqsTemplate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -13,14 +13,14 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class TimeSheetReportProducer implements PublishTimeSheetReportRepository {
 
-    @Value("${" + EnvironmentProperties.TIME_TRACKING_EVENT_TOPIC + "}")
-    private String topicName;
+    @Value("${" + EnvironmentProperties.TIME_TRACKING_NOTIFICATION_REQUEST_QUEUE + "}")
+    private String queueName;
 
-    private final SnsTemplate sns;
+    private final SqsTemplate sqs;
 
 
     @Override
     public void publish(TimesheetReportResponse timesheetReport) {
-        sns.convertAndSend(topicName, timesheetReport);
+        sqs.send(to -> to.queue(queueName).payload(timesheetReport));
     }
 }
