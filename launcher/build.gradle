@@ -10,8 +10,7 @@ plugins {
 dependencies {
     implementation project(":adapter")
     implementation project(":drivers:mysql")
-    implementation project(":drivers:rest")
-    implementation project(":drivers:customer-remove-data-producer")
+    implementation project(":drivers:time-sheet-report-producer")
     implementation project(":drivers:timetracking-consumer")
     implementation project(":drivers:timesheet-request-consumer")
     implementation project(":drivers:timesheet-report-s3")

@@ -14,14 +14,9 @@ aws:
       time-tracking-event.queue: local-hackathon-time-sheet-time-tracking-event-queue
       time-sheet-request.queue: local-hackathon-time-sheet-request-queue
     sns:
-      customer-remove-data.topic: local-customer-remove-data-topic
+      time-tracking-event.topic: local-time-tracking-event-topic
     s3:
       time-sheet.bucket: time-sheet
-
-customer.data.removal.aes:
-  algorithm: AES/CBC/PKCS5PADDING
-  password: 5110569f-7666-4c67-98e5-db8d6e1b
-  iv: e2a3c25441d4f75e
 
 spring:
   cloud:
