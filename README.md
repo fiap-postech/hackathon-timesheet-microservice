@@ -13,7 +13,7 @@ A transição para a nuvem é um passo importante para o início de grandes mode
 
 ## Solução
 
-Foi elaborado um conjunto de serviços para viabilizar a operação de registro de ponto.
+Foi elaborado um conjunto de serviços para viabilizar a operação de registro de ponto!
 
 ![Visão Geral da Solução](doc/c1_hackathon.png)
 

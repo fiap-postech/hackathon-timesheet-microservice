@@ -10,7 +10,6 @@ aws:
     sqs:
       time-tracking-event.queue: prd-hackathon-time-sheet-time-tracking-event-queue
       time-sheet-request.queue: prd-hackathon-time-sheet-request-queue
-    sns:
-      time-tracking-event.topic: prd-customer-remove-data-topic
+      time-sheet-notification-request.queue: prd-hackathon-time-sheet-notification-request-queue
     s3:
       time-sheet.bucket: time-sheet

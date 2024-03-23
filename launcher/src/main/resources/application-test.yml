@@ -18,7 +18,6 @@ aws:
     sqs:
       time-tracking-event.queue: local-hackathon-time-sheet-time-tracking-event-queue
       time-sheet-request.queue: local-hackathon-time-sheet-request-queue
-    sns:
-      time-tracking-event.topic: local-time-tracking-event-topic
+      time-sheet-notification-request.queue: local-hackathon-time-sheet-notification-request-queue
     s3:
       time-sheet.bucket: time-sheet
