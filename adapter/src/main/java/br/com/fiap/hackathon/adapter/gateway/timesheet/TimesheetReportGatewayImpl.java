@@ -33,6 +33,7 @@ class TimesheetReportGatewayImpl implements TimesheetReportGateway {
                     .build();
         }else{
             var timeSheetEntities = readerGateway.read(dto);
+
             var timeSheetReportDTO = TimesheetReportDTO.builder().employeeId(dto.getEmployeeId())
                     .yearMonth(dto.getYearMonth())
                     .build();
@@ -43,11 +44,17 @@ class TimesheetReportGatewayImpl implements TimesheetReportGateway {
                     .startTimestamp(e.getStartTimestamp())
                     .uuidEndRecord(e.getUuidEndRecord())
                     .endTimestamp(e.getEndTimestamp())
-                    .build()).toList();
+                    .build()
+            ).toList();
 
             timeSheetReportDTO.setTimesheet(timeSheetList);
 
-            return repository.write(timeSheetReportDTO);
+            return TimesheetReportResponse.builder()
+                    .bucket(bucketName)
+                    .employeeEmail(dto.getEmployeeEmail())
+                    .employeeId(dto.getEmployeeId())
+                    .key(repository.write(timeSheetReportDTO))
+                    .build();
         }
     }
 }

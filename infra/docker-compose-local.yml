@@ -24,6 +24,7 @@ services:
   localstack:
     container_name: localstack
     image: fiapsoat2grupo13/hackathon-localstack-resources:latest
+    platform: linux/amd64
     ports:
       - "127.0.0.1:4566:4566"
       - "127.0.0.1:4510-4559:4510-4559"

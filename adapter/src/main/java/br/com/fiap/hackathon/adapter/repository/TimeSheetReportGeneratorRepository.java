@@ -1,6 +1,7 @@
-package br.com.fiap.tech.challenge.adapter.repository;
+package br.com.fiap.hackathon.adapter.repository;
 
-import br.com.fiap.tech.challenge.application.dto.TimesheetReportDTO;
+
+import br.com.fiap.hackathon.application.dto.TimesheetReportDTO;
 
 public interface TimeSheetReportGeneratorRepository {
 

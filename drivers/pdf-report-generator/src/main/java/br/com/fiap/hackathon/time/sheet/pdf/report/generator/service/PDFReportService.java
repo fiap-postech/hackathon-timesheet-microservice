@@ -1,8 +1,8 @@
 package br.com.fiap.hackathon.time.sheet.pdf.report.generator.service;
 
+import br.com.fiap.hackathon.application.dto.TimesheetReportDTO;
 import br.com.fiap.hackathon.time.sheet.pdf.report.generator.model.PageSize;
-import br.com.fiap.tech.challenge.adapter.repository.TimeSheetReportGeneratorRepository;
-import br.com.fiap.tech.challenge.application.dto.TimesheetReportDTO;
+import br.com.fiap.hackathon.adapter.repository.TimeSheetReportGeneratorRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.poi.wp.usermodel.HeaderFooterType;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;

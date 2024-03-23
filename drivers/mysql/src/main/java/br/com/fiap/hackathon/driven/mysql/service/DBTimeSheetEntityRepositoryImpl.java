@@ -15,7 +15,6 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static br.com.fiap.tech.challenge.enterprise.error.ApplicationError.TIMESHEET_NOT_FOUND_BY_EMPLOYEE;
 
@@ -72,11 +71,12 @@ public class DBTimeSheetEntityRepositoryImpl implements TimeSheetWriterRepositor
        return timeSheetEntities.stream().map(t -> TimeTrackingEntity.builder()
                .employeeId(t.getEmployeeId())
                .yearMonth(t.getYearMonth())
+               .date(t.getDate())
                .uuidStartRecord(t.getUuidStartRecord())
                .startTimestamp(t.getStartTimestamp())
                .uuidEndRecord(t.getUuidEndRecord())
                .endTimestamp(t.getEndTimestamp())
                .totalWorkHours(t.getTotalWorkHours())
-               .build()).collect(Collectors.toList());
+               .build()).toList();
     }
 }

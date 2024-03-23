@@ -1,9 +1,9 @@
 package br.com.fiap.hackathon.time.sheet.pdf.report.generator.section;
 
+import br.com.fiap.hackathon.application.dto.TimeTrackingReportDTO;
+import br.com.fiap.hackathon.application.dto.TimesheetReportDTO;
 import br.com.fiap.hackathon.time.sheet.pdf.report.generator.line.LineBuilderFactory;
 import br.com.fiap.hackathon.time.sheet.pdf.report.generator.model.LineType;
-import br.com.fiap.tech.challenge.application.dto.TimeTrackingReportDTO;
-import br.com.fiap.tech.challenge.application.dto.TimesheetReportDTO;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.apache.poi.xwpf.usermodel.LineSpacingRule;
