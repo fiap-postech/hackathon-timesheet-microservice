@@ -32,15 +32,14 @@ include 'launcher'
 include 'drivers:mysql'
 findProject(':drivers:mysql')?.name = 'mysql'
 
-include 'drivers:rest'
-findProject(':drivers:rest')?.name = 'rest'
-
-
-include 'drivers:timesheet-request-consumer'
-findProject(':drivers:timesheet-request-consumer')?.name = 'timesheet-request-consumer'
+include 'drivers:time-sheet-report-producer'
+findProject(':drivers:time-sheet-report-producer')?.name = 'time-sheet-report-producer'
 
 include 'drivers:timetracking-consumer'
 findProject(':drivers:timetracking-consumer')?.name = 'timetracking-consumer'
+
+include 'drivers:timesheet-request-consumer'
+findProject(':drivers:timesheet-request-consumer')?.name = 'timesheet-request-consumer'
 
 include 'drivers:timesheet-report-s3'
 findProject(':drivers:timesheet-report-s3')?.name = 'timesheet-report-s3'

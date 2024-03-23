@@ -1,8 +1,8 @@
 package br.com.fiap.tech.challenge.launcher.configuration;
 
-import br.com.fiap.tech.challenge.adapter.gateway.customer.CustomerGatewayFactory;
-import br.com.fiap.tech.challenge.adapter.repository.*;
-import br.com.fiap.tech.challenge.application.gateway.*;
+import br.com.fiap.hackathon.adapter.gateway.timesheet.TimesheetGatewayFactory;
+import br.com.fiap.hackathon.adapter.repository.*;
+import br.com.fiap.hackathon.application.gateway.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,32 +10,22 @@ import org.springframework.context.annotation.Configuration;
 public class GatewayConfiguration {
 
     @Bean
-    public TimeTrackingWriterGateway customerWriterGateway(TimeSheetWriterRepository writerRepository) {
-        return CustomerGatewayFactory.customerWriterGateway(writerRepository);
+    public PublishTimeSheetReportGateway publishTimeSheetReportGateway(PublishTimeSheetReportRepository requestRepository) {
+        return TimesheetGatewayFactory.publishTimeSheetReportGateway(requestRepository);
     }
 
     @Bean
-    public CustomerReaderGateway customerReaderGateway(CustomerReaderRepository repository) {
-        return CustomerGatewayFactory.customerReaderGateway(repository);
+    public TimesheetReportGateway timesheetReportGateway(TimesheetReportRepository repository, TimeTrackingReaderGateway timeTrackingReaderGateway) {
+        return TimesheetGatewayFactory.timeSheetReportGateway(repository, timeTrackingReaderGateway);
     }
 
     @Bean
-    public PublishDataRemovalRequestGateway publishDataRemovalRequestGateway(PublishDataRemovalRequestRepository requestRepository) {
-        return CustomerGatewayFactory.publishDataRemovalRequestGateway(requestRepository);
+    public TimeTrackingWriterGateway timeTrackingWriterGateway(TimeSheetWriterRepository writerRepository) {
+        return TimesheetGatewayFactory.timeTrackingWriterGateway(writerRepository);
     }
 
     @Bean
-    public PublishDataRemovalResponseGateway publishDataRemovalResponseGateway(PublishDataRemovalResponseRepository responseRepository) {
-        return CustomerGatewayFactory.publishDataRemovalResponseGateway(responseRepository);
-    }
-
-    @Bean
-    public TimesheetReportGateway dataRemovalInquiryGateway(TimesheetReportRepository repository, TimeTrackingReaderGateway timeTrackingReaderGateway) {
-        return CustomerGatewayFactory.dataRemovalInquiryGateway(repository, timeTrackingReaderGateway);
-    }
-
-    @Bean
-    public TimeTrackingReaderGateway getTimeTrackingReaderGateway(TimeSheetReaderRepository repository) {
-        return CustomerGatewayFactory.getTimetrackingReaderRepository(repository);
+    public TimeTrackingReaderGateway timeTrackingReaderGateway(TimeSheetReaderRepository repository) {
+        return TimesheetGatewayFactory.timeTrackingReaderGateway(repository);
     }
 }

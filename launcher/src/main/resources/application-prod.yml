@@ -1,13 +1,9 @@
 db:
   host: mysql
-  schema: tech_challenge
-  username: sys_tech_challenge
+  schema: timesheetdb
+  username: sys_hackathon_timesheet
   password: #defined at AWS Secrets Manager
   port: 3306
-
-spring.data.redis:
-  host: redis
-  port: 6379
 
 aws:
   resources:
@@ -15,11 +11,6 @@ aws:
       time-tracking-event.queue: prd-hackathon-time-sheet-time-tracking-event-queue
       time-sheet-request.queue: prd-hackathon-time-sheet-request-queue
     sns:
-      customer-remove-data.topic: prd-customer-remove-data-topic
+      time-tracking-event.topic: prd-customer-remove-data-topic
     s3:
-      customer.data.removal: customer-data-removal
-
-customer.data.removal.aes:
-  algorithm: #defined at AWS Secrets Manager
-  password: #defined at AWS Secrets Manager
-  iv: #defined at AWS Secrets Manager
+      time-sheet.bucket: time-sheet
