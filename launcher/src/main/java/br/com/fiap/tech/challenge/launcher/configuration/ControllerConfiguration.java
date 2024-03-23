@@ -7,7 +7,7 @@ import br.com.fiap.tech.challenge.adapter.controller.customer.FindCustomerByUUID
 import br.com.fiap.tech.challenge.adapter.controller.customer.FindDataRemovalByUUIDController;
 import br.com.fiap.tech.challenge.adapter.controller.customer.TimeTrackingController;
 import br.com.fiap.tech.challenge.adapter.controller.customer.RequestDataRemovalController;
-import br.com.fiap.tech.challenge.adapter.controller.customer.UpdateDataRemovalController;
+import br.com.fiap.tech.challenge.adapter.controller.customer.ReportController;
 import br.com.fiap.tech.challenge.adapter.controller.customer.UpgradeCustomerController;
 import br.com.fiap.tech.challenge.adapter.presenter.CustomerPresenter;
 import br.com.fiap.tech.challenge.adapter.presenter.DataRemovalPresenter;
@@ -18,7 +18,7 @@ import br.com.fiap.tech.challenge.application.usecase.customer.FindDataRemovalBy
 import br.com.fiap.tech.challenge.application.usecase.customer.PublishDataRemovalUseCase;
 import br.com.fiap.tech.challenge.application.usecase.customer.TimeTrackingUseCase;
 import br.com.fiap.tech.challenge.application.usecase.customer.RequestDataRemovalUseCase;
-import br.com.fiap.tech.challenge.application.usecase.customer.UpdateDataRemovalUseCase;
+import br.com.fiap.tech.challenge.application.usecase.customer.ReportUseCase;
 import br.com.fiap.tech.challenge.application.usecase.customer.UpgradeCustomerUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -62,7 +62,7 @@ public class ControllerConfiguration {
     }
 
     @Bean
-    public UpdateDataRemovalController updateDataRemovalController(UpdateDataRemovalUseCase useCase) {
+    public ReportController updateDataRemovalController(ReportUseCase useCase) {
         return CustomerControllerFactory.updateDataRemovalController(useCase);
     }
 }

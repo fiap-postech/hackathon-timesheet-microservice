@@ -2,11 +2,10 @@ package br.com.fiap.tech.challenge.launcher.configuration;
 
 import br.com.fiap.tech.challenge.application.gateway.CustomerReaderGateway;
 import br.com.fiap.tech.challenge.application.gateway.TimeTrackingWriterGateway;
-import br.com.fiap.tech.challenge.application.gateway.DataRemovalInquiryGateway;
+import br.com.fiap.tech.challenge.application.gateway.TimesheetReportGateway;
 import br.com.fiap.tech.challenge.application.gateway.DataRemovalReaderGateway;
 import br.com.fiap.tech.challenge.application.gateway.DataRemovalWriterGateway;
 import br.com.fiap.tech.challenge.application.gateway.PublishDataRemovalRequestGateway;
-import br.com.fiap.tech.challenge.application.gateway.PublishDataRemovalResponseGateway;
 import br.com.fiap.tech.challenge.application.usecase.customer.CreateCustomerUseCase;
 import br.com.fiap.tech.challenge.application.usecase.customer.TimeSheetUseCaseFactory;
 import br.com.fiap.tech.challenge.application.usecase.customer.FindCustomerByDocumentUseCase;
@@ -15,7 +14,7 @@ import br.com.fiap.tech.challenge.application.usecase.customer.FindDataRemovalBy
 import br.com.fiap.tech.challenge.application.usecase.customer.PublishDataRemovalUseCase;
 import br.com.fiap.tech.challenge.application.usecase.customer.TimeTrackingUseCase;
 import br.com.fiap.tech.challenge.application.usecase.customer.RequestDataRemovalUseCase;
-import br.com.fiap.tech.challenge.application.usecase.customer.UpdateDataRemovalUseCase;
+import br.com.fiap.tech.challenge.application.usecase.customer.ReportUseCase;
 import br.com.fiap.tech.challenge.application.usecase.customer.UpgradeCustomerUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -49,28 +48,13 @@ public class UseCaseConfiguration {
     }
 
     @Bean
-    public RequestDataRemovalUseCase requestDataRemovalUseCase(CustomerReaderGateway customerReaderGateway,
-                                                               DataRemovalReaderGateway removalReaderGateway,
-                                                               DataRemovalWriterGateway removalWriterGateway,
-                                                               DataRemovalInquiryGateway inquiryGateway) {
-
-        return TimeSheetUseCaseFactory.requestDataRemovalUseCase(
-                customerReaderGateway,
-                removalReaderGateway,
-                removalWriterGateway,
-                inquiryGateway
-        );
-    }
-
-    @Bean
     public TimeTrackingUseCase removeDataUseCase(TimeTrackingWriterGateway writerGateway) {
         return TimeSheetUseCaseFactory.saveTracking(writerGateway);
     }
 
     @Bean
-    public UpdateDataRemovalUseCase updateDataRemovalUseCase(DataRemovalReaderGateway removalReaderGateway,
-                                                             DataRemovalWriterGateway removalWriterGateway) {
-        return TimeSheetUseCaseFactory.updateDataRemovalUseCase(removalReaderGateway, removalWriterGateway);
+    public ReportUseCase updateDataRemovalUseCase(TimesheetReportGateway timesheetReportGateway) {
+        return TimeSheetUseCaseFactory.updateDataRemovalUseCase(timesheetReportGateway);
     }
 
     @Bean

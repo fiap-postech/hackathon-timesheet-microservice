@@ -3,7 +3,7 @@ package br.com.fiap.tech.challenge.customer.driven.customer.producer.messaging;
 import br.com.fiap.tech.challenge.adapter.repository.PublishDataRemovalRequestRepository;
 import br.com.fiap.tech.challenge.adapter.repository.PublishDataRemovalResponseRepository;
 import br.com.fiap.tech.challenge.application.dto.TimeTrackingDTO;
-import br.com.fiap.tech.challenge.application.dto.DataRemovalDoneDTO;
+import br.com.fiap.tech.challenge.application.dto.TimesheetRequestDTO;
 import br.com.fiap.tech.challenge.customer.driven.customer.producer.config.EnvironmentProperties;
 import br.com.fiap.tech.challenge.customer.driven.customer.producer.dto.EventDTO;
 import io.awspring.cloud.sns.core.SnsTemplate;
@@ -32,12 +32,12 @@ public class CustomerDataRemovalProducer implements PublishDataRemovalRequestRep
     }
 
     @Override
-    public void publish(DataRemovalDoneDTO dto) {
-        sqs.send(to -> to.queue(queueName).payload(
+    public void publish(TimesheetRequestDTO dto) {
+        /*sqs.send(to -> to.queue(queueName).payload(
                 new EventDTO()
                         .setApplication(dto.getApplication())
                         .setId(dto.getId())
                         .setStatus(dto.getStatus())
-        ));
+        ));*/
     }
 }

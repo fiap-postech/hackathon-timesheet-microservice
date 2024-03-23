@@ -12,11 +12,11 @@ aws:
   resources:
     sqs:
       time-tracking-event.queue: local-hackathon-time-sheet-time-tracking-event-queue
-      customer-removed-data.queue: local-customer-remove-data-response-queue
+      time-sheet-request.queue: local-hackathon-time-sheet-request-queue
     sns:
       customer-remove-data.topic: local-customer-remove-data-topic
     s3:
-      customer.data.removal: customer-data-removal
+      time-sheet.bucket: time-sheet
 
 customer.data.removal.aes:
   algorithm: AES/CBC/PKCS5PADDING

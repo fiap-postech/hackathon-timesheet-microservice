@@ -1,7 +1,7 @@
 package br.com.fiap.tech.challenge.adapter.gateway.customer;
 
 import br.com.fiap.tech.challenge.adapter.repository.PublishDataRemovalResponseRepository;
-import br.com.fiap.tech.challenge.application.dto.DataRemovalDoneDTO;
+import br.com.fiap.tech.challenge.application.dto.TimesheetRequestDTO;
 import br.com.fiap.tech.challenge.application.gateway.PublishDataRemovalResponseGateway;
 import lombok.RequiredArgsConstructor;
 
@@ -11,7 +11,7 @@ class PublishDataRemovalResponseGatewayImpl implements PublishDataRemovalRespons
     private final PublishDataRemovalResponseRepository responseRepository;
 
     @Override
-    public void publishResponse(DataRemovalDoneDTO dto) {
+    public void publishResponse(TimesheetRequestDTO dto) {
         responseRepository.publish(dto);
     }
 }

@@ -13,7 +13,7 @@ aws:
   resources:
     sqs:
       time-tracking-event.queue: prd-hackathon-time-sheet-time-tracking-event-queue
-      customer-removed-data.queue: prd-customer-remove-data-response-queue
+      time-sheet-request.queue: prd-hackathon-time-sheet-request-queue
     sns:
       customer-remove-data.topic: prd-customer-remove-data-topic
     s3:

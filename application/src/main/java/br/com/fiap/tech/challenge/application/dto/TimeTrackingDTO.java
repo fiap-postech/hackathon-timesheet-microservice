@@ -16,5 +16,5 @@ public class TimeTrackingDTO implements Serializable {
     private String uuid;
     private String employeeId;
     private LocalDate date;
-    private EntryDTO entries;
+    private EntryDTO entry;
 }

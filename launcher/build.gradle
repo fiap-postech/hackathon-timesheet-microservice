@@ -13,8 +13,8 @@ dependencies {
     implementation project(":drivers:rest")
     implementation project(":drivers:customer-remove-data-producer")
     implementation project(":drivers:timetracking-consumer")
-    implementation project(":drivers:customer-remove-data-response-consumer")
-    implementation project(":drivers:customer-remove-data-inquiry-producer")
+    implementation project(":drivers:timesheet-request-consumer")
+    implementation project(":drivers:timesheet-report-s3")
     implementation sharedLibs.spring.boot.starter.actuator
     implementation sharedLibs.spring.boot.starter.data.jpa
     implementation sharedLibs.spring.boot.starter.logging

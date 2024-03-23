@@ -2,7 +2,7 @@ package br.com.fiap.tech.challenge.application.usecase.customer;
 
 import br.com.fiap.tech.challenge.application.gateway.CustomerReaderGateway;
 import br.com.fiap.tech.challenge.application.gateway.TimeTrackingWriterGateway;
-import br.com.fiap.tech.challenge.application.gateway.DataRemovalInquiryGateway;
+import br.com.fiap.tech.challenge.application.gateway.TimesheetReportGateway;
 import br.com.fiap.tech.challenge.application.gateway.DataRemovalReaderGateway;
 import br.com.fiap.tech.challenge.application.gateway.DataRemovalWriterGateway;
 import br.com.fiap.tech.challenge.application.gateway.PublishDataRemovalRequestGateway;
@@ -36,16 +36,8 @@ public class TimeSheetUseCaseFactory {
         return new TimeTrackingUseCaseImpl(writerGateway);
     }
 
-    public static RequestDataRemovalUseCase requestDataRemovalUseCase(CustomerReaderGateway customerReaderGateway,
-                                                                      DataRemovalReaderGateway removalReaderGateway,
-                                                                      DataRemovalWriterGateway removalWriterGateway,
-                                                                      DataRemovalInquiryGateway inquiryGateway) {
-        return new RequestDataRemovalUseCaseImpl(customerReaderGateway, removalReaderGateway, removalWriterGateway, inquiryGateway);
-    }
-
-    public static UpdateDataRemovalUseCase updateDataRemovalUseCase(DataRemovalReaderGateway removalReaderGateway,
-                                                                    DataRemovalWriterGateway removalWriterGateway) {
-        return new UpdateDataRemovalUseCaseImpl(removalReaderGateway, removalWriterGateway);
+    public static ReportUseCase updateDataRemovalUseCase(TimesheetReportGateway timesheetReportGateway) {
+        return new ReportUseCaseImpl(timesheetReportGateway);
     }
 
     public static PublishDataRemovalUseCase publishDataRemovalUseCase(PublishDataRemovalRequestGateway requestGateway,

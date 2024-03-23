@@ -20,6 +20,6 @@ public class DataRemovalDTO implements Serializable {
     private String customerId;
     private DataRemovalStatus status;
     private LocalDateTime requested;
-    private List<DataRemovalItemDTO> items;
+    private List<TimeTrackingReportDTO> items;
 
 }

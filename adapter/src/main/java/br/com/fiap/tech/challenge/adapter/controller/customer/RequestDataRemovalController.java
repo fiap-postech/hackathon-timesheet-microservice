@@ -1,9 +1,9 @@
 package br.com.fiap.tech.challenge.adapter.controller.customer;
 
 import br.com.fiap.tech.challenge.application.dto.DataRemovalDTO;
-import br.com.fiap.tech.challenge.application.dto.RequestDataRemovalDTO;
+import br.com.fiap.tech.challenge.application.dto.TimesheetReportDTO;
 
 public interface RequestDataRemovalController {
 
-    DataRemovalDTO create(RequestDataRemovalDTO dto);
+    DataRemovalDTO create(TimesheetReportDTO dto);
 }

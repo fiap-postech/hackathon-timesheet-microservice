@@ -1,19 +1,7 @@
 package br.com.fiap.tech.challenge.adapter.gateway.customer;
 
-import br.com.fiap.tech.challenge.adapter.repository.CustomerReaderRepository;
-import br.com.fiap.tech.challenge.adapter.repository.TimeSheetWriterRepository;
-import br.com.fiap.tech.challenge.adapter.repository.DataRemovalInquiryRepository;
-import br.com.fiap.tech.challenge.adapter.repository.DataRemovalReaderRepository;
-import br.com.fiap.tech.challenge.adapter.repository.DataRemovalWriterRepository;
-import br.com.fiap.tech.challenge.adapter.repository.PublishDataRemovalRequestRepository;
-import br.com.fiap.tech.challenge.adapter.repository.PublishDataRemovalResponseRepository;
-import br.com.fiap.tech.challenge.application.gateway.CustomerReaderGateway;
-import br.com.fiap.tech.challenge.application.gateway.TimeTrackingWriterGateway;
-import br.com.fiap.tech.challenge.application.gateway.DataRemovalInquiryGateway;
-import br.com.fiap.tech.challenge.application.gateway.DataRemovalReaderGateway;
-import br.com.fiap.tech.challenge.application.gateway.DataRemovalWriterGateway;
-import br.com.fiap.tech.challenge.application.gateway.PublishDataRemovalRequestGateway;
-import br.com.fiap.tech.challenge.application.gateway.PublishDataRemovalResponseGateway;
+import br.com.fiap.tech.challenge.adapter.repository.*;
+import br.com.fiap.tech.challenge.application.gateway.*;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -28,14 +16,6 @@ public class CustomerGatewayFactory {
         return new CustomerReaderGatewayImpl(readerRepository);
     }
 
-    public static DataRemovalWriterGateway dataRemovalWriterGateway(DataRemovalWriterRepository repository) {
-        return new DataRemovalWriterGatewayImpl(repository);
-    }
-
-    public static DataRemovalReaderGateway dataRemovalReaderGateway(DataRemovalReaderRepository repository) {
-        return new DataRemovalReaderGatewayImpl(repository);
-    }
-
     public static PublishDataRemovalRequestGateway publishDataRemovalRequestGateway(PublishDataRemovalRequestRepository requestRepository) {
         return new PublishDataRemovalRequestGatewayImpl(requestRepository);
     }
@@ -44,7 +24,11 @@ public class CustomerGatewayFactory {
         return new PublishDataRemovalResponseGatewayImpl(responseRepository);
     }
 
-    public static DataRemovalInquiryGateway dataRemovalInquiryGateway(DataRemovalInquiryRepository repository) {
-        return new DataRemovalInquiryGatewayImpl(repository);
+    public static TimesheetReportGateway dataRemovalInquiryGateway(TimesheetReportRepository repository, TimeTrackingReaderGateway timeTrackingReaderGateway) {
+        return new TimesheetReportGatewayImpl(repository, timeTrackingReaderGateway);
+    }
+
+    public static TimeTrackingReaderGateway getTimetrackingReaderRepository(TimeSheetReaderRepository repository) {
+        return new TimeTrackingReaderGatewayImpl(repository);
     }
 }

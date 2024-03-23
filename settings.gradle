@@ -41,8 +41,8 @@ findProject(':drivers:customer-remove-data-producer')?.name = 'customer-remove-d
 include 'drivers:timetracking-consumer'
 findProject(':drivers:timetracking-consumer')?.name = 'timetracking-consumer'
 
-include 'drivers:customer-remove-data-response-consumer'
-findProject(':drivers:customer-remove-data-response-consumer')?.name = 'customer-remove-data-response-consumer'
+include 'drivers:timesheet-request-consumer'
+findProject(':drivers:timesheet-request-consumer')?.name = 'timesheet-request-consumer'
 
-include 'drivers:customer-remove-data-inquiry-producer'
-findProject(':drivers:customer-remove-data-inquiry-producer')?.name = 'customer-remove-data-inquiry-producer'
+include 'drivers:timesheet-report-s3'
+findProject(':drivers:timesheet-report-s3')?.name = 'timesheet-report-s3'
